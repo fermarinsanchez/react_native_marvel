@@ -12,8 +12,18 @@ const getSuperHeroes = async () => {
 
     const response = await fetch(`https://gateway.marvel.com/v1/public/characters?ts=${timestamp}&orderBy=name&limit=30&apikey=${PUBLIC_KEY}&hash=${hash.hex()}`);
     const  data = await response.json();
-
-    return data;
+    const includeLikeProperty = data.data.results.map(hero => {
+        hero.isLiked = false;
+        return hero;
+    })
+    return includeLikeProperty;
 }
 
-export {getSuperHeroes};
+const getSuperHeroDetail = async (id) => {
+    const response = await fetch(`https://gateway.marvel.com/v1/public/characters/${id}?ts=${timestamp}&orderBy=name&limit=30&apikey=${PUBLIC_KEY}&hash=${hash.hex()}`);
+    const data = await response.json();
+    console.log('data in api', data);
+    return data.data.results;    
+};
+
+export {getSuperHeroes, getSuperHeroDetail};

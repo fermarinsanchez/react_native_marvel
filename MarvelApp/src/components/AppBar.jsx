@@ -1,18 +1,25 @@
-import { View, StyleSheet } from 'react-native'
-import Constants from 'expo-constants'
+import { View, StyleSheet, Image } from 'react-native'
 import theme from '../theme/theme'
 import { useLocation, Link } from "react-router-native";
 import StyledText from "./StyledText";
 
-const AppBarTab = ({ children, to }) => {
-	const { pathname } = useLocation()
-	const active = pathname === to
-	const textStyles = [styles.text, active && styles.active]
+
+const AppBarTab = ({ text, to, icon, iconSelected }) => {
+	const { pathname } = useLocation();
+	const active = pathname === to;
+	const textStyles = [styles.text, active && styles.active];
+    const handleIcon = active 
+        ? iconSelected 
+        : icon;
 	return (
-		<Link to={to}>
+		<Link to={to} activeOpacity={1} underlayColor={theme.appBar.primary}>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <Image style={{width: 20, height: 20}} source={handleIcon} />
 			<StyledText fontWeight='bold' style={textStyles}>
-				{children}
+				{text}
 			</StyledText>
+        </View>
+          
 		</Link>
 	);
 }
@@ -21,10 +28,8 @@ const AppBarTab = ({ children, to }) => {
 const AppBar = () => {
 	return (
 		<View style={styles.container}>
-				<AppBarTab to='/'>
-					Home
-				</AppBarTab>
-				<AppBarTab to='/favorites'>Favorites</AppBarTab>
+				<AppBarTab to='/' text={'Home'} icon={require('./img/icons/home-appbar.png')} iconSelected={require('./img/icons/home-appbar-selected.png')}/>
+				<AppBarTab to='/favorites' text={'Favs'} icon={require('./img/icons/heart-appbar.png')} iconSelected={require('./img/icons/heart-appbar-selected.png')}/>
 		</View>
 	);
 }
@@ -33,12 +38,13 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		backgroundColor: theme.appBar.primary,
-		paddingTop: Constants.statusBarHeight + 10,
+		paddingTop: 10,
 		paddingBottom: 10,
 		paddingLeft: 10,
         position: 'absolute',
         bottom: 0,
         width: '100%',
+        zIndex: 11,
         justifyContent: 'space-between',
 	},
 	text: {

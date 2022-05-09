@@ -1,4 +1,3 @@
-import { Platform } from "react-native";
 
 const theme = {
   appBar: {
@@ -7,26 +6,32 @@ const theme = {
     textSecondary: '#aaa'
   },
   colors: {
-    textPrimary: '#24292e',
-    textSecondary: '#586069',
-    primary: '#0366d6',
+    textPrimary: '#FFFFFF',
+    textSecondary: '#BCBCBC',
+    primary: '#FF0000',
     white: '#fefefe'
+  },
+  fontConfig: {
+    Inter: {
+      400: 'Inter_400Regular',
+      600: 'Inter_600SemiBold'
+    }
   },
   fontSizes: {
     body: 14,
     subheading: 16,
+    card: 12
   },
   fonts: {
-    main: Platform.select({
-      ios: 'Arial',
-      android: 'Roboto',
-      default: 'System'
-    }),
+    appBar: 'Inter',
+    title: 'Inter',
+    body: 'Inter'
   },
   fontWeights: {
     normal: '400',
+    semibold: '600',
     bold: '700',
   },
-}
+};
 
 export default theme;
