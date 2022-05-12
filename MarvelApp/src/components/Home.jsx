@@ -1,17 +1,11 @@
 import React from 'react';
-import { View, ActivityIndicator, ScrollView } from 'react-native';
+import { View, ActivityIndicator, ScrollView, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import {PortalProvider} from 'react-native-portal'
 import { getSuperHeroes } from '../services/api';
-import Constants from 'expo-constants'
-import theme from '../theme/theme'
+import Constants from 'expo-constants';
+import theme from '../theme/theme';
 import HeroDetail from './HeroDetail';
 import Card from './Card';
-
-
-
-
-
 
 const Home = () => {
 
@@ -25,6 +19,7 @@ const Home = () => {
     const reduxDataHeroes = useSelector(state => state.superheroes);
 
     React.useEffect(() => {
+      
         if(reduxDataHeroes.length) {
             setSuperHeroes(reduxDataHeroes);
             setShowData(true);
@@ -45,7 +40,7 @@ const Home = () => {
 
     if(!showData) {
         return (
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000000'}}>
+            <View style={style.ActivityIndicatorContainer}>
                 <ActivityIndicator size="large" color={theme.colors.primary} />
             </View>
         )
@@ -53,30 +48,19 @@ const Home = () => {
 
 
   return (
-      <View style={{
-          paddingTop: Constants.statusBarHeight,
-          height: '93%',
-          backgroundColor: '#000000'
-        }}>
+      <View style={style.mainContainer}>
             {seeDetail 
-                ?  (    <PortalProvider>
+                ?  (    
                             <HeroDetail 
                                 heroId={heroId} 
                                 setSeeDetail={setSeeDetail}
+                                superHeroes={superHeroes}
+                                setSuperHeroes={setSuperHeroes}
                             />
-                        </PortalProvider>)
+                        )
                     
                         : <ScrollView>
-                            <View style={{
-                                flex: 1,
-                                flexDirection: 'row',
-                                flexWrap: 'wrap',
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                                marginLeft: 12,
-                                width: '90%',
-                                paddingTop: 20
-                                }}>
+                            <View style={style.cardGrid}>
                                 {superHeroes.map(item => (
                                     <Card 
                                         key={item.id}
@@ -92,5 +76,29 @@ const Home = () => {
 
   )
 }
+
+const style = StyleSheet.create({
+    ActivityIndicatorContainer: {
+      flex: 1, 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      backgroundColor: '#000000' 
+    },
+    mainContainer: {
+      paddingTop: Constants.statusBarHeight,
+      height: '93%',
+      backgroundColor: '#000000'
+    },
+    cardGrid: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginLeft: 12,
+        width: '90%',
+        paddingTop: 20
+    }
+  });
 
 export default Home;

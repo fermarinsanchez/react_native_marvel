@@ -1,8 +1,7 @@
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
 
 const INITIAL_STATE = {
   superheroes: {},
-  mySuperheroes: {},
 };
 
 const allSuperheroes = (state = INITIAL_STATE, action) => {
@@ -15,17 +14,6 @@ const allSuperheroes = (state = INITIAL_STATE, action) => {
   }
 };
 
-const addMySuperheroes = (state = INITIAL_STATE, action) => {
-    console.log('actionType', action.type)
-
-    switch (action.type) {
-      case "ADD_MY_SUPERHEROES":
-        return { ...state, payload: action.superhero };
-  
-      default:
-        return state;
-    }
-  };
 
 const store = createStore(allSuperheroes);
 

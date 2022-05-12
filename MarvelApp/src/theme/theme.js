@@ -3,20 +3,18 @@ const theme = {
   appBar: {
     primary: '#24292e',
     textPrimary: '#fff',
-    textSecondary: '#aaa'
+    textSecondary: '#DADADA'
   },
   colors: {
     textPrimary: '#FFFFFF',
     textSecondary: '#BCBCBC',
     primary: '#FF0000',
     white: '#fefefe',
-    button: 'rgba(255, 255, 255, 0.4);'
-  },
-  fontConfig: {
-    Inter: {
-      400: 'Inter_400Regular',
-      600: 'Inter_600SemiBold'
-    }
+    button: 'rgba(255, 255, 255, 0.4);',
+    gradientColor1: 'rgba(0, 0, 0, 1)',
+    gradientColor2: 'rgba(0, 0, 0, 0)',
+    notSelected:'#DADADA',
+    selected: '#fff'
   },
   fontSizes: {
     body: 14,
@@ -27,9 +25,9 @@ const theme = {
     description: 15
   },
   fonts: {
-    appBar: 'Inter',
-    title: 'Inter',
-    body: 'Inter'
+    appBar: 'Roboto',
+    title: 'Roboto',
+    body: 'Roboto'
   },
   fontWeights: {
     normal: '400',

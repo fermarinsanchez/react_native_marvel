@@ -9,7 +9,6 @@ import HeroDetail from './HeroDetail';
 
  const Main = () => {
 
-
 	return (
 		<View style={{ flex: 1 }}>
 			<AppBar />

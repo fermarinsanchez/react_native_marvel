@@ -22,7 +22,6 @@ const getSuperHeroes = async () => {
 const getSuperHeroDetail = async (id) => {
     const response = await fetch(`https://gateway.marvel.com/v1/public/characters/${id}?ts=${timestamp}&orderBy=name&limit=30&apikey=${PUBLIC_KEY}&hash=${hash.hex()}`);
     const data = await response.json();
-    console.log('data in api', data);
     return data.data.results;    
 };
 
