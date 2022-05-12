@@ -3,4 +3,5 @@
 1. Clone repository
 2. Go to route /react_native_marvel/MarvelApp
 3. Type npm i to install dependecies
-4. Run the project with npm start and select your device (IOS, Android, Web)
+4. Install Expo Go in your mobile
+5. Run the project with npm start and scan the QR with your mobile.
