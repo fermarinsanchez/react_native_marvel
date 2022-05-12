@@ -28,17 +28,18 @@ const HeroDetail = ({ heroId, setSeeDetail, superHeroes, setSuperHeroes, favorit
                 newSuperHeroes[hero].isLiked = !newSuperHeroes[hero].isLiked;
             }
         }
-        dispatch({
+        !favorites && dispatch({
             type: 'ADD_SUPERHEROES',
             payload: [...newSuperHeroes]
         })
         setSuperHeroes(newSuperHeroes)
+        setSeeDetail(false)
     }
 
     if (!Object.entries(hero).length) {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000000' }}>
-                <ActivityIndicator size="large" color={theme.colors.primary} />
+                <ActivityIndicator size="large" color={theme.colors.alert} />
             </View>
         )
     }
@@ -85,16 +86,16 @@ const HeroDetail = ({ heroId, setSeeDetail, superHeroes, setSuperHeroes, favorit
             <View>
                 <Text style={style.description}>{handleNoDescription}</Text>
             </View>
-            {!favorites &&
+            
             <TouchableOpacity 
                 style={style.likeButtonContainer}     
-                onPress={() => isFav(hero)}
+                onPress={() => favorites ? null : isFav(hero)}
             >
                 <FontAwesome
                     name="heart-o"
                     size={24}
-                    color={theme.colors.textPrimary} />
-            </TouchableOpacity>}
+                    color={hero.isLiked  === true || favorites ? theme.colors.primary : theme.colors.textPrimary} />
+            </TouchableOpacity>
         </>
     )
 }

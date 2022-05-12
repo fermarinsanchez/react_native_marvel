@@ -41,7 +41,7 @@ const Home = () => {
     if(!showData) {
         return (
             <View style={style.ActivityIndicatorContainer}>
-                <ActivityIndicator size="large" color={theme.colors.primary} />
+                <ActivityIndicator size="large" color={theme.colors.alert} />
             </View>
         )
     }

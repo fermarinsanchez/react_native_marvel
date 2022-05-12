@@ -27,7 +27,7 @@ const Card = (props) => {
     if (!item) {
         return (
             <View style={style.ActivityIndicatorContainer}>
-                <ActivityIndicator size="large" color={theme.colors.primary} />
+                <ActivityIndicator size="large" color={theme.colors.alert} />
             </View>
         )
     }

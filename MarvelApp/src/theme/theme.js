@@ -8,7 +8,7 @@ const theme = {
   colors: {
     textPrimary: '#FFFFFF',
     textSecondary: '#BCBCBC',
-    primary: '#FF0000',
+    alert: '#FF0000',
     white: '#fefefe',
     button: 'rgba(255, 255, 255, 0.4);',
     gradientColor1: 'rgba(0, 0, 0, 1)',
